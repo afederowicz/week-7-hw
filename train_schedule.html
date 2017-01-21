@@ -28,6 +28,20 @@
 
       <div class="row">
 
+       <!-- Wells for displaying all users -->
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Current Train Schedule</h3>
+            </div>
+            <div class="panel-body">
+                <div id="full-train-list"></div>
+            </div>
+          </div>
+        </div>
+
+
+
         <!-- Sign-Up Panel-->
         <div class="col-lg-12">
           <div class="panel panel-default">
@@ -66,17 +80,7 @@
 
        
 
-        <!-- Wells for displaying all users -->
-        <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Current Train Schedule</h3>
-            </div>
-            <div class="panel-body">
-                <div id="full-train-list"></div>
-            </div>
-          </div>
-        </div>
+        
 
       </div>
 
@@ -87,7 +91,7 @@
 
     <!-- Script -->
     <script>
-    // ========================================== START CODING BELOW!!
+  
       // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCIemDMEwLRoEtrSRFrbr8A8yZFlnps9Uw",
@@ -105,9 +109,7 @@
     var frequency = "";
     // Capture Button Click
     $("#add-train").on("click", function() {
-      // YOUR TASK!!!
-      // Code in the logic for storing and retrieving the most recent user.
-      // Don't forget to provide initial data to your Firebase database.
+   
       name = $("#name-input").val().trim();
       destination = $("#destination-input").val().trim();
       time = $("#first-time-input").val().trim();
@@ -120,7 +122,7 @@
         frequency: frequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
-      // Don't refresh the page!
+    // Don't refresh the page!
       return false;
     });
     //value 
@@ -137,10 +139,10 @@
       console.log(childSnapshot.val().frequency);
       console.log(childSnapshot.val().joinDate);
       // full list of items to the well
-      $("#full-train-list").append("<div class='well'><span id='name'> " + childSnapshot.val().name +
-        " </span><span id='destination'> " + childSnapshot.val().destination +
-        " </span><span id='first-time'> " + childSnapshot.val().time +
-        " </span><span id='frequency'> " + childSnapshot.val().frequency + " </span></div>");
+      $("#full-train-list").append("<div class='well'><span id='name' class='col-lg-3'> " + childSnapshot.val().name +
+        " </span><span id='destination' class='col-lg-3'> " + childSnapshot.val().destination +
+        " </span><span id='first-time' class='col-lg-2'> " + childSnapshot.val().time +
+        " </span><span id='frequency' class='col-lg-2'> " + childSnapshot.val().frequency + " </span></div>");
     // Handle the errors
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
